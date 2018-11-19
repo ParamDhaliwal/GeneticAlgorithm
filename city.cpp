@@ -22,7 +22,8 @@ city::city(int name, int x_coordinate, int y_coordinate)
  *
  * @param range
  */
-void city::check_coordinate(int range) {
+void city::check_coordinate(int range)
+{
     if(range < 0 || range > MAP_BOUNDARY) {
         throw invalid_argument("the range should be between [0, 10000]");
     }

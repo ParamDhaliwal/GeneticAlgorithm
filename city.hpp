@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class city {
+class city
+{
 private:
     int city_id;
     int x, y;

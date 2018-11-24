@@ -7,8 +7,17 @@
 
 using namespace std;
 
+/**
+ * Default constructor.
+ */
+tour::tour() = default;
+
+/**
+ * Overloaded constructor.
+ *
+ * @param cities
+ * @param fitness
+ */
 tour::tour(list<city> cities, double fitness)
     : cities_list(move(cities)),
       fitness(fitness){}
-
-tour::tour() = default;

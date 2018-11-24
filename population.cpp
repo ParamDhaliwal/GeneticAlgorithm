@@ -5,4 +5,14 @@
 #include <list>
 #include "population.hpp"
 
+/**
+ * Default constructor.
+ */
+population::population() = default;
+
+/**
+ * Overloaded constructor.
+ *
+ * @param tours
+ */
 population::population(const std::list <tour> &tours) : tours(tours) {}

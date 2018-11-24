@@ -13,5 +13,6 @@ private:
     list<tour> tours = {};
 
 public:
+    population();
     population(const list<tour> &tours);
 };

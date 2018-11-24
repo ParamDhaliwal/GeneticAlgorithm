@@ -12,9 +12,11 @@ private:
     population *popl;
 
 public:
-    const population &getPopl() const;
-
     genetic_algorithm();
+
+    genetic_algorithm(population *popl);
+
+    const population &getPopl() const;
 
     void genetic_algo();
 

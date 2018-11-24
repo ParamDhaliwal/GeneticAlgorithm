@@ -5,12 +5,31 @@
 #include "genetic_algorithm.hpp"
 #include "util.cpp"
 
+/**
+ * Default constructor.
+ */
 genetic_algorithm::genetic_algorithm() = default;
 
+/**
+ * Overloaded constructor.
+ *
+ * @param popl
+ */
+genetic_algorithm::genetic_algorithm(population *popl) : popl(popl) {}
+
+/**
+ * Gets the genetic population.
+ *
+ * @return
+ */
 const population &genetic_algorithm::getPopl() const {
     return *popl;
 }
 
+/**
+ * Initializes, evaluates, selects, crossovers,
+ * mutates, and again evaluates "population".
+ */
 void genetic_algorithm::genetic_algo() {
 
     // initialize population

@@ -7,6 +7,6 @@
 
 using namespace std;
 
-tour::tour(list<city> cities, double finess)
+tour::tour(list<city> cities, double fitness)
     : cities_list(move(cities)),
       fitness(fitness){}

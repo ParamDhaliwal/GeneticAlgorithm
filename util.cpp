@@ -96,7 +96,7 @@ static void move_fittest_to_front(population popl) {
 // TODO
 // Given.
 static void crossover(population popl) {
-    list<tour> parent_tours = select_parents(*popl);
+    list<tour> parent_tours = select_parents(popl);
     tour child_tour = crossover(parent_tours);
 }
 

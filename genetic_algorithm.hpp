@@ -9,12 +9,12 @@
 class genetic_algorithm {
 
 private:
-    population popl;
+    population *popl;
 
 public:
     const population &getPopl() const;
 
-    genetic_algorithm(population populate);
+    genetic_algorithm();
 
     void genetic_algo();
 

@@ -82,3 +82,26 @@ static void mutate(tour t) {
 static bool contains_city(tour t, city c) {
     return false;
 }
+
+// TODO
+static void print_population_details(population popl) {
+
+}
+
+// TODO
+static void move_fittest_to_front(population popl) {
+
+}
+
+// TODO
+// Given.
+static void crossover(population popl) {
+    list<tour> parent_tours = select_parents(*popl);
+    tour child_tour = crossover(parent_tours);
+}
+
+// TODO
+// Mutates the entire population.
+static void mutate (population popl) {
+
+}

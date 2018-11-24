@@ -16,5 +16,6 @@ private:
     double fitness;
 
 public:
+    tour();
     tour(list<city> cities_list, double fitness);
 };

@@ -6,16 +6,21 @@
 #include "constants.hpp"
 
 /**
+ * Default constructor.
+ */
+ city::city() = default;
+
+/**
  * Overloaded constructor for city.
  *
  * @param name
  * @param x_coordinate
  * @param y_coordinate
  */
-city::city(int name, int x_coordinate, int y_coordinate)
-    : city_id(name),
-      x(x_coordinate),
-      y(y_coordinate){}
+city::city(int city_id, int x, int y)
+    : city_id(city_id),
+      x(x),
+      y(y){}
 
 /**
  * Checks the range set for x and y coordinates.

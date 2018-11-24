@@ -4,9 +4,6 @@
 
 #pragma once
 #include <iostream>
-#include <iomanip>
-#include <string>
-#include <math.h>
 
 using namespace std;
 
@@ -14,9 +11,11 @@ class city
 {
 private:
     int city_id;
-    int x, y;
+    int x;
+    int y;
 
 public:
-    city(int name, int x_coordinate, int y_coordinate);
+    city();
+    city(int city_id, int x, int y);
     void check_coordinate(int range);
 };

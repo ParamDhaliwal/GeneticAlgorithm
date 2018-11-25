@@ -6,6 +6,7 @@
 #include "tour.hpp"
 #include "population.hpp"
 #include "constants.hpp"
+#include <utility>
 #include <iostream>
 #include <list>
 #include <algorithm>
@@ -28,9 +29,13 @@ static list<tour> generate_random_tours(list<city> cities) {
 }
 
 // TODO
-//  Determine and record the fitness of each tour. The fitness must be a double that represents the
-//  quality of the tour. Shorter tours are better quality, and will have better fitness. A good idea is to
-//  use the inverse of the total distance travelled possibly multiplied by some scalar.
+/**
+ * Determine and record the fitness of each tour. The fitness must be a double that represents the quality of the tour.
+ * Shorter tours are better quality, and will have better fitness. A good idea is to
+ * use the inverse of the total distance travelled possibly multiplied by some scalar.
+ * @param t
+ * @return
+ */
 static double calculate_fitness(tour t) {
     // Use scalar
     return -1;
@@ -41,16 +46,13 @@ static bool termination_criteria_met() {
     return true;
 }
 
-// TODO - Edited
 // shuffle_cities to shuffle the cities in a tour.
 static void shuffle_cities(tour * t) {
     vector<tour> my_vector (t, t + CITIES_IN_TOUR);
     srand(unsigned(time(0)));
     shuffle(my_vector.begin(), my_vector.end(), mt19937(random_device()()));
-    cout << '\n';
 }
 
-// TODO - Edited
 // get_distance_between_cities to calculate the as-the-crow-flies distance between two cities.
 static double get_distance_between_cities(city a, city b) {
     double x_distance   = a.getX() - b.getX();
@@ -62,19 +64,33 @@ static double get_distance_between_cities(city a, city b) {
 // TODO
 // get_tour_distance reports the distance between the cities as they are listed in a tour.
 static double get_tour_distance(tour t) {
-
-    return -1;
+    double total_distance = 0;
+    for (int i = 0; i < t.getCities_list().size(); i++) {
+//        total_distance += get_distance_between_cities(t.getCities_list(), t.getCities_list());
+    }
+    return total_distance;
 }
 
-// TODO
 // determine_fitness determines the fitness of a tour.
 static double determine_fitness(tour t) {
-   return -1;
+    return FITNESS_MULTIPLIER / get_tour_distance(t);
 }
 
 // TODO
 // select_parents will select the parents for a new tour from a population.
+/**
+ * Choose each parent by selecting a subset of tours from the population to represent potential parents, and
+ * then select thenfittest from the subset. That is, each parent is the fittest of a subset of size
+ * PARENT_POOL_SIZE of the population, randomly selected.
+ *
+ * @param popl
+ * @return
+ */
 static list<tour> select_parents(population popl) {
+    // Figure out how to select a random subset of list.
+    // Create two such sets.
+    // Select fittest tour from each set.
+    // Two of the fittest will be the parents.
     list<tour> parent_tours;
     return parent_tours;
 }
@@ -92,9 +108,13 @@ static void mutate(tour t) {
 
 }
 
-// TODO
 // contains_city checks if a tour contains a specified city.
 static bool contains_city(tour t, city c) {
+    for(const city a: t.getCities_list()) {
+        if(a.getCity_id() == c.getCity_id()) {
+            return true;
+        }
+    }
     return false;
 }
 

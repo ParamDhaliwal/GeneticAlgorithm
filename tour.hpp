@@ -13,9 +13,10 @@ class tour
 {
 private:
     list<city> cities_list = {};
-    double fitness;
 
 public:
     tour();
-    tour(list<city> cities_list, double fitness);
+    tour(list<city> cities_list);
+    const list<city> &getCities_list() const;
+    double getFitness() const;
 };

@@ -3,6 +3,7 @@
 //
 
 #include "tour.hpp"
+#include "util.cpp"
 #include <utility>
 
 using namespace std;
@@ -16,8 +17,25 @@ tour::tour() = default;
  * Overloaded constructor.
  *
  * @param cities
- * @param fitness
  */
-tour::tour(list<city> cities, double fitness)
-    : cities_list(move(cities)),
-      fitness(fitness){}
+tour::tour(list<city> cities)
+    : cities_list(move(cities)){}
+
+/**
+ * Accessor to get the list of cities
+ * stored in a tour.
+ *
+ * @return cities_list
+ */
+const list<city> &tour::getCities_list() const {
+    return cities_list;
+}
+
+/**
+ * Helps getting the fitness of a tour.
+ *
+ * @return
+ */
+double tour::getFitness() const {
+    return determine_fitness(*this);
+}

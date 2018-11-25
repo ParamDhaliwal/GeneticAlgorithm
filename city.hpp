@@ -18,6 +18,7 @@ public:
     city();
     city(int city_id, int x, int y);
     void check_coordinate(int range);
+    int getCity_id() const;
     int getX() const;
     int getY() const;
 };

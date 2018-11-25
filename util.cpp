@@ -5,7 +5,15 @@
 #include "city.hpp"
 #include "tour.hpp"
 #include "population.hpp"
+#include "constants.hpp"
+#include <iostream>
 #include <list>
+#include <algorithm>
+#include <vector>
+#include <random>
+#include <cmath>
+
+using namespace std;
 
 // TODO
 static list<city> generate_random_cities() {
@@ -33,21 +41,28 @@ static bool termination_criteria_met() {
     return true;
 }
 
-// TODO
+// TODO - Edited
 // shuffle_cities to shuffle the cities in a tour.
-static void shuffle_cities(tour t) {
-
+static void shuffle_cities(tour * t) {
+    vector<tour> my_vector (t, t + CITIES_IN_TOUR);
+    srand(unsigned(time(0)));
+    shuffle(my_vector.begin(), my_vector.end(), mt19937(random_device()()));
+    cout << '\n';
 }
 
-// TODO
+// TODO - Edited
 // get_distance_between_cities to calculate the as-the-crow-flies distance between two cities.
 static double get_distance_between_cities(city a, city b) {
-    return -1;
+    double x_distance   = a.getX() - b.getX();
+    double y_distance   = a.getY() - b.getY();
+    double distance     = sqrt((x_distance * x_distance) + (y_distance * y_distance));
+    return distance;
 }
 
 // TODO
 // get_tour_distance reports the distance between the cities as they are listed in a tour.
 static double get_tour_distance(tour t) {
+
     return -1;
 }
 

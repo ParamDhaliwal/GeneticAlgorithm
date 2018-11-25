@@ -4,7 +4,7 @@
 
 #pragma once
 
-static const int CITIES_INT_TOUR{32};
+static const int CITIES_IN_TOUR{32};
 static const int POPULATION_SIZE{32};
 static const int SHUFFLES{64};
 static const int ITERATIONS{1000};

@@ -33,3 +33,11 @@ void city::check_coordinate(int range)
         throw invalid_argument("the range should be between [0, 10000]");
     }
 }
+
+int city::getX() const {
+    return x;
+}
+
+int city::getY() const {
+    return y;
+}

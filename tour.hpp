@@ -13,15 +13,16 @@ class tour
 {
 private:
     int tour_id;
-    vector<city> cities_list;
+    vector<city> cities;
 
 public:
     tour();
-    tour(int tour_id, vector<city> cities_list);
+    tour(int tour_id, vector<city> cities);
 
-    void set_cities_list(const vector<city> &cities_list);
+    void add_city(city);
+    void set_cities(const vector<city> &cities);
 
     int get_tour_id() const;
-    vector<city> &get_cities_list();
+    vector<city> &get_cities();
     double get_fitness() const;
 };

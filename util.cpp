@@ -13,6 +13,7 @@
 #include <vector>
 #include <random>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -56,13 +57,19 @@ static vector<tour> generate_random_tours(vector<city> cities) {
     return tours;
 }
 
-// shuffle_cities to shuffle the cities in a tour.
-//static void shuffle_cities(vector<tour> &t) {
-//    vector<tour> my_vector (t, t + CITIES_IN_TOUR);
-//    vector<reference_wrapper<const tour >> my_vector(t.begin(), t.end());
-//    srand(unsigned(time(0)));
-//    shuffle(my_vector.begin(), my_vector.end(), mt19937(random_device()()));
-//    vector<tour> shuffled_list{my_vector.begin(), my_vector.end()};
+//static population generate_random_population() {
+//    population *popl = new population();
+//    auto rng = std::default_random_engine{};
+//    for (int i = 0; i < POPULATION_SIZE; i++) {
+//        vector<city> cities = generate_random_cities();
+//        vector<city> shuffled_tours;
+//        shuffled_tours.swap(cities);
+//        shuffle(shuffled_tours.begin(), shuffled_tours.end(), rng);
+//        tour *t = new tour();
+////        cities.push_back(t->add_city());
+//        popl->add_tour(t);
+//    }
+//    return *popl;
 //}
 
 /**
@@ -88,9 +95,9 @@ static double get_distance_between_cities(city a, city b) {
  */
 static double get_tour_distance(tour t) {
     double total_distance = 0;
-    for (int i = 0; i < t.get_cities_list().size() - 1; i++) {
-        city a = t.get_cities_list().at(i);
-        city b = t.get_cities_list().at(i + 1);
+    for (auto i = 0; i < t.get_cities().size() - 1; i++) {
+        city a = t.get_cities().at(i);
+        city b = t.get_cities().at(i + 1);
         total_distance += get_distance_between_cities(a, b);
     }
     return total_distance;
@@ -106,7 +113,7 @@ static double get_tour_distance(tour t) {
 static tour get_shortest_tour(vector<tour> tours) {
     tour shortest_tour;
     double min_distance = __DBL_MAX__;
-    for (int i = 0; i < tours.size(); i++) {
+    for (auto i = 0; i < tours.size(); i++) {
         tour t = tours.at(i);
         double distance = get_tour_distance(t);
         if (distance < min_distance) {
@@ -137,8 +144,9 @@ static double get_best_distance(population *popl) {
  * @param baseDistance
  * @return
  */
-static bool termination_criteria_met(population *popl, double baseDistance) {
-    double improvement = baseDistance / get_best_distance(popl);
+static bool termination_criteria_met(population *popl, double base_distance) {
+    double improvement = base_distance / get_best_distance(popl);
+    cout << "Improvement: " << improvement << "\n\n";
     return improvement > IMPROVEMENT_FACTOR;
 }
 
@@ -174,25 +182,12 @@ static vector<tour> select_parents(population * popl) {
         vector<tour> parent_pool(first, last);
         parents.push_back(get_shortest_tour(parent_pool));
     }
-    return parents;
-}
-
-// TODO
-// crossover creates a new tour from a given set of parent tours.
-static tour crossover(vector<tour> parent_tours) {
-    tour new_tour;
-    return new_tour;
-}
-
-// TODO
-// mutate to mutate a tour.
-static void mutate(tour t) {
-
+//    return parents;
 }
 
 // contains_city checks if a tour contains a specified city.
 static bool contains_city(tour t, city c) {
-    for (const city a: t.get_cities_list()) {
+    for (const city a: t.get_cities()) {
         if (a.get_city_id() == c.get_city_id()) {
             return true;
         }
@@ -200,12 +195,97 @@ static bool contains_city(tour t, city c) {
     return false;
 }
 
-// TODO
-static void print_population_details(population popl) {
+/**
+ * Creates a new tour from a given set of parent tours.
+ *
+ * @param parent_tours
+ * @return
+ */
+static tour crossover(vector<tour> parent_tours) {
 
+
+    tour child;
+    tour parent1 = parent_tours.at(0);
+    tour parent2 = parent_tours.at(1);
+
+    int random_index = (random() * parent_tours.size()) / RAND_MAX;
+
+    // Populate cities from parent1
+    for (int i = 0; i < random_index; i++) {
+        child.add_city(parent1.get_cities().at(i));
+    }
+
+    // Top-up the mixed tour with cities from parent2 starting from randomIndex
+    for (auto i = random_index; i < parent2.get_cities().size(); i++) {
+        city c = parent2.get_cities().at(i);
+        if (!contains_city(child, c)) {
+            child.add_city(c);
+        }
+    }
+
+    // If there are still cities to be added, select them from parent2 starting from the beginning
+    if (child.get_cities().size() < parent1.get_cities().size()) {
+        for (int i = 0; i < random_index; i++) {
+            city c = parent2.get_cities().at(i);
+            if (!contains_city(child, c)) {
+                child.add_city(c);
+            }
+        }
+    }
+    return child;
 }
 
-// TODO
-static void move_fittest_to_front(population popl) {
+/**
+ * Mutates a tour.
+ * @param t
+ */
+static void mutate(tour *t) {
+    for (auto i = 0; i < t->get_cities().size(); i++) {
+        city c = t->get_cities().at(i);
+        int mutation_value = (random() * 100) / RAND_MAX;
+        if (mutation_value < MUTATION_RATE) {
+            // Random boolean value indicating whether to swap
+            // the city with previous adjacent city or the next.
+            bool swap_with_next = random() % 2 == 0;
+            if (swap_with_next) {
+                // If last city, then swap it with the first
+                if (i == t->get_cities().size() - 1) {
+                    iter_swap(t->get_cities().begin() + i, t->get_cities().begin());
+                } else {
+                    iter_swap(t->get_cities().begin() + i, t->get_cities().begin() + i + 1);
+                }
+            } else {
+                // If first city, then swap it with the last
+                if (i == 0) {
+                    iter_swap(t->get_cities().begin() + i, t->get_cities().end() - 1);
+                } else {
+                    iter_swap(t->get_cities().begin() + i, t->get_cities().begin() + i - 1);
+                }
+            }
+        }
+    }
+}
 
+/**
+ * Prints population's details.
+ *
+ * @param popl
+ */
+static void print_population_details(population popl) {
+    for (size_t i = 0; i < popl.get_tours()->size(); i++) {
+        tour t = popl.get_tours()->at(i);
+        cout << "Fitness level: " << setw(1) << determine_fitness(t) << right << endl;
+        cout << "Tour distance: " << setw(2) << get_tour_distance(t) << left << "\n" << endl;
+    }
+}
+
+/**
+ * Helps moving fittest to the front of a list.
+ *
+ * @param popl
+ */
+static void move_fittest_to_front(population *popl) {
+    vector<tour> *tours = popl->get_tours();
+    tour t = get_shortest_tour(*tours);
+    tours->insert(tours->begin(), t);
 }

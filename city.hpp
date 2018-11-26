@@ -13,7 +13,7 @@ private:
     int city_id;
     int x;
     int y;
-    
+
 public:
     city();
     city(int city_id, int x, int y);

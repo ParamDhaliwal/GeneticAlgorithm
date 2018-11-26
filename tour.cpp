@@ -21,15 +21,22 @@ tour::tour() = default;
  */
 tour::tour(int tour_id, vector<city> cities)
     : tour_id(tour_id),
-      cities_list(move(cities)){}
+      cities(cities){}
+
+/**
+ * Helps adding cities in a tour.
+ */
+void tour::add_city(city c) {
+    cities.push_back(c);
+}
 
 /**
  * Sets cities list.
  *
  * @param cities_list
  */
-void tour::set_cities_list(const vector<city> &cities_list) {
-    tour::cities_list = cities_list;
+void tour::set_cities(const vector<city> &cities) {
+    tour::cities = cities;
 }
 
 /**
@@ -37,8 +44,8 @@ void tour::set_cities_list(const vector<city> &cities_list) {
  *
  * @return cities_list
  */
-vector<city> &tour::get_cities_list() {
-    return cities_list;
+vector<city> &tour::get_cities() {
+    return cities;
 }
 
 /**

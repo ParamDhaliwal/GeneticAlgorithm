@@ -10,14 +10,11 @@ class genetic_algorithm {
 
 private:
     population *popl;
+    double base_distance;
 
 public:
     genetic_algorithm();
-
     genetic_algorithm(population *popl);
-
     const population &getPopl() const;
-
     void genetic_algo();
-
 };

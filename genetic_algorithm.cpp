@@ -33,23 +33,22 @@ const population &genetic_algorithm::getPopl() const {
 void genetic_algorithm::genetic_algo() {
 
     // initialize population
-    list<city> cities_list = generate_random_cities();
-    list<tour> tours_list = generate_random_tours(cities_list);
+    vector<city> cities_list = generate_random_cities();
+    vector<tour> tours_list = generate_random_tours(cities_list);
     popl = new population(tours_list);
 
     // evaluate population
     print_population_details(*popl);
 
-    while(!termination_criteria_met()) {
-        // select solutions for next population
-        move_fittest_to_front(*popl);
-
-        // perform crossover and mutation
-        crossover(*popl);
-        mutate(*popl);
+//    while(!termination_criteria_met()) {
+//        // select solutions for next population
+//        move_fittest_to_front(*popl);
+//
+//        // perform crossover and mutation
+//        crossover(*popl);
+//        mutate(*popl);
 
         // evaluate new population
         print_population_details(*popl);
-    }
 }
 

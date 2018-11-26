@@ -5,15 +5,15 @@
 #pragma once
 
 #include "tour.hpp"
-#include <list>
+#include <vector>
 
 class population {
 
 private:
-    list<tour> tours;
+    vector<tour> tours;
 
 public:
     population();
-    population(const list<tour> &tours);
-    const list<tour> &getTours() const;
+    population(vector<tour> &tours);
+    vector<tour> * get_tours();
 };

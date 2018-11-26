@@ -15,12 +15,12 @@ population::population() = default;
  *
  * @param tours
  */
-population::population(const std::list <tour> &tours) : tours(tours) {}
+population::population(vector <tour> &tours) : tours(tours) {}
 
 /**
  * Gets all the tours.
  * @return
  */
-const list<tour> &population::getTours() const {
-    return tours;
+vector<tour> * population::get_tours() {
+    return &(this->tours);
 }

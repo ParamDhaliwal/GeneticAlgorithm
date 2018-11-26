@@ -2,9 +2,10 @@
 // Created by veerd on 2018-11-21.
 //
 
+
+#include <utility>
 #include "tour.hpp"
 #include "util.cpp"
-#include <utility>
 
 using namespace std;
 
@@ -18,15 +19,16 @@ tour::tour() = default;
  *
  * @param cities
  */
-tour::tour(list<city> cities)
-    : cities_list(move(cities)){}
+tour::tour(int tour_id, vector<city> cities)
+    : tour_id(tour_id),
+      cities_list(move(cities)){}
 
 /**
  * Sets cities list.
  *
  * @param cities_list
  */
-void tour::set_cities_list(const list<city> &cities_list) {
+void tour::set_cities_list(const vector<city> &cities_list) {
     tour::cities_list = cities_list;
 }
 
@@ -35,7 +37,7 @@ void tour::set_cities_list(const list<city> &cities_list) {
  *
  * @return cities_list
  */
-const list<city> &tour::get_cities_list() const {
+vector<city> &tour::get_cities_list() {
     return cities_list;
 }
 

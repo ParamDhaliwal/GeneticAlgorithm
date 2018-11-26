@@ -23,50 +23,6 @@ city::city(int city_id, int x, int y)
       y(y){}
 
 /**
- * Accessor to get city's id.
- *
- * @return city_id
- */
-int city::getCity_id() const {
-    return city_id;
-}
-
-/**
- * Mutator for a city's x coordinate.
- *
- * @param x
- */
-void city::setX(int x) {
-    city::x = x;
-}
-
-/**
- * Mutator for a city's y coordinate
- * @param y
- */
-void city::setY(int y) {
-    city::y = y;
-}
-
-/**
- * Accessor to get x coordinate.
- *
- * @return x
- */
-int city::getX() const {
-    return x;
-}
-
-/**
- * Accessor to get y coordinate.
- *
- * @return y
- */
-int city::getY() const {
-    return y;
-}
-
-/**
  * Checks the range set for x and y coordinates.
  *
  * @param range
@@ -76,4 +32,55 @@ void city::check_coordinate(int range)
     if(range < 0 || range > MAP_BOUNDARY) {
         throw invalid_argument("the range should be between [0, 1000]");
     }
+}
+/**
+ * Sets city's id.
+ * @param city_id
+ */
+void city::set_city_id(int city_id) {
+    city::city_id = city_id;
+}
+
+/**
+ * Sets city's x coordinate.
+ *
+ * @param x
+ */
+void city::set_x(int x) {
+    city::x = x;
+}
+
+/**
+ * Sets city's y coordinate
+ * @param y
+ */
+void city::set_y(int y) {
+    city::y = y;
+}
+
+/**
+ * Gets city's id.
+ *
+ * @return city_id
+ */
+int city::get_city_id() const {
+    return city_id;
+}
+
+/**
+ * Gets x coordinate.
+ *
+ * @return x
+ */
+int city::get_x() const {
+    return x;
+}
+
+/**
+ * Gets y coordinate.
+ *
+ * @return y
+ */
+int city::get_y() const {
+    return y;
 }

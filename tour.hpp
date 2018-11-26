@@ -12,11 +12,15 @@ using namespace std;
 class tour
 {
 private:
+    int tour_id;
     list<city> cities_list;
+public:
 
 public:
     tour();
     tour(list<city> cities_list);
-    const list<city> &getCities_list() const;
-    double getFitness() const;
+    void set_cities_list(const list<city> &cities_list);
+    int get_tour_id() const;
+    const list<city> &get_cities_list() const;
+    double get_fitness() const;
 };

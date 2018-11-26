@@ -22,20 +22,37 @@ tour::tour(list<city> cities)
     : cities_list(move(cities)){}
 
 /**
- * Accessor to get the list of cities
- * stored in a tour.
+ * Sets cities list.
+ *
+ * @param cities_list
+ */
+void tour::set_cities_list(const list<city> &cities_list) {
+    tour::cities_list = cities_list;
+}
+
+/**
+ * Gets list of cities stored in a tour.
  *
  * @return cities_list
  */
-const list<city> &tour::getCities_list() const {
+const list<city> &tour::get_cities_list() const {
     return cities_list;
+}
+
+/**
+ * Gets tour's id.
+ *
+ * @return tour_id
+ */
+int tour::get_tour_id() const {
+    return tour_id;
 }
 
 /**
  * Helps getting the fitness of a tour.
  *
- * @return
+ * @return fitness after determining
  */
-double tour::getFitness() const {
+double tour::get_fitness() const {
     return determine_fitness(*this);
 }

@@ -17,8 +17,8 @@
 using namespace std;
 
 static void set_random_cities_coordinates(city *c) {
-    c->setX(static_cast<int>((random() * MAP_BOUNDARY) / RAND_MAX));
-    c->setY(static_cast<int>((random() * MAP_BOUNDARY) / RAND_MAX));
+    c->set_x(static_cast<int>((random() * MAP_BOUNDARY) / RAND_MAX));
+    c->set_y(static_cast<int>((random() * MAP_BOUNDARY) / RAND_MAX));
 }
 
 static list<city> generate_random_cities() {
@@ -48,16 +48,16 @@ static bool termination_criteria_met() {
 // shuffle_cities to shuffle the cities in a tour.
 static void shuffle_cities(list<tour> &t) {
 //    vector<tour> my_vector (t, t + CITIES_IN_TOUR);
-    vector<reference_wrapper<const tour >> my_vector(t.begin(), t.end());
-    srand(unsigned(time(0)));
-    shuffle(my_vector.begin(), my_vector.end(), mt19937(random_device()()));
-    list<tour> shuffled_list{my_vector.begin(), my_vector.end()};
+//    vector<reference_wrapper<const tour >> my_vector(t.begin(), t.end());
+//    srand(unsigned(time(0)));
+//    shuffle(my_vector.begin(), my_vector.end(), mt19937(random_device()()));
+//    list<tour> shuffled_list{my_vector.begin(), my_vector.end()};
 }
 
 // get_distance_between_cities to calculate the as-the-crow-flies distance between two cities.
 static double get_distance_between_cities(city a, city b) {
-    double x_distance = a.getX() - b.getX();
-    double y_distance = a.getY() - b.getY();
+    double x_distance = a.get_x() - b.get_x();
+    double y_distance = a.get_y() - b.get_y();
     double distance = sqrt((x_distance * x_distance) + (y_distance * y_distance));
     return distance;
 }
@@ -66,7 +66,7 @@ static double get_distance_between_cities(city a, city b) {
 // get_tour_distance reports the distance between the cities as they are listed in a tour.
 static double get_tour_distance(tour t) {
     double total_distance = 0;
-    for (int i = 0; i < t.getCities_list().size(); i++) {
+    for (int i = 0; i < t.get_cities_list().size(); i++) {
 //        total_distance += get_distance_between_cities(t.getCities_list(), t.getCities_list());
     }
     return total_distance;
@@ -126,8 +126,8 @@ static void mutate(tour t) {
 
 // contains_city checks if a tour contains a specified city.
 static bool contains_city(tour t, city c) {
-    for (const city a: t.getCities_list()) {
-        if (a.getCity_id() == c.getCity_id()) {
+    for (const city a: t.get_cities_list()) {
+        if (a.get_city_id() == c.get_city_id()) {
             return true;
         }
     }

@@ -16,3 +16,7 @@ population::population() = default;
  * @param tours
  */
 population::population(const std::list <tour> &tours) : tours(tours) {}
+
+const list<tour> &population::getTours() const {
+    return tours;
+}

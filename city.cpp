@@ -32,6 +32,23 @@ int city::getCity_id() const {
 }
 
 /**
+ * Mutator for a city's x coordinate.
+ *
+ * @param x
+ */
+void city::setX(int x) {
+    city::x = x;
+}
+
+/**
+ * Mutator for a city's y coordinate
+ * @param y
+ */
+void city::setY(int y) {
+    city::y = y;
+}
+
+/**
  * Accessor to get x coordinate.
  *
  * @return x

@@ -10,9 +10,10 @@
 class population {
 
 private:
-    list<tour> tours = {};
+    list<tour> tours;
 
 public:
     population();
     population(const list<tour> &tours);
+    const list<tour> &getTours() const;
 };

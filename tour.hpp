@@ -12,7 +12,7 @@ using namespace std;
 class tour
 {
 private:
-    list<city> cities_list = {};
+    list<city> cities_list;
 
 public:
     tour();

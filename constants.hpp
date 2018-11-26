@@ -14,3 +14,4 @@ static const int MUTATION_RATE{5};
 static const int NUMBER_OF_PARENTS{2};
 static const int NUMBER_OF_ELITES{1};
 static const int FITNESS_MULTIPLIER{1};
+static const int SCALAR{10};

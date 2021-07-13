@@ -1,7 +1,7 @@
 # GeneticAlgorithm
-A2 - GeneticAlgorithm
+GeneticAlgorithm
 
-COMP 3512 | Programming in C++
+Programming in C++
 
 A genetic algorithm is an algorithm that draws inspiration from theories of natural selection. That is,
 we start with a ‘population’ of sample candidates, evaluate their fitness, perform some sort of cross-over
